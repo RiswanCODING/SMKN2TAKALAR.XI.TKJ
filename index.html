@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>XI TKJ - SMKN 2 TAKALAR | Official Class Website</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌐</text></svg>">
+</head>
+<body>
+
+  <!-- Top Scroll Progress Bar -->
+  <div id="scrollProgressBar" class="scroll-progress-bar"></div>
+
+  <!-- Back to Top Button -->
+  <button id="btnScrollTop" class="btn-scroll-top" title="Kembali ke Atas" onclick="window.scrollTo({top:0, behavior:'smooth'})">▲</button>
+
+  <!-- ================= NAVBAR ================= -->
+  <nav class="navbar" id="navbar">
+    <div class="container nav-wrapper">
+      <a href="#beranda" class="brand-logo">
+        <div class="brand-icon">🌐</div>
+        <div class="brand-text">
+          <h2>XI TKJ</h2>
+          <span>SMKN 2 TAKALAR</span>
+        </div>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#beranda" class="active">Beranda</a></li>
+        <li><a href="#struktur">Struktur Organisasi</a></li>
+        <li><a href="#siswa">Daftar Siswa</a></li>
+        <li><a href="#jadwal">Jadwal & Piket</a></li>
+        <li><a href="#galeri">Galeri Foto</a></li>
+        <li><a href="#pesan">Pesan & Kesan</a></li>
+      </ul>
+
+      <!-- Pojok Kanan Atas: Developer Badge Muh Riswan -->
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <div class="developer-header-badge" onclick="openDevAuthModal()" title="Klik untuk Login / Kelola Hak Developer">
+          <span class="dev-icon">💻</span>
+          <div class="dev-text">
+            <span class="dev-label">DEVELOPER</span>
+            <span class="dev-name">Muh Riswan</span>
+          </div>
+          <span class="dev-glow-dot"></span>
+        </div>
+        <button class="nav-btn-mobile" onclick="toggleMobileMenu()">☰</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ================= HERO SECTION ================= -->
+  <header class="hero" id="beranda">
+    <!-- Floating Developer Badge di Pojok Kanan Atas Beranda -->
+    <div class="hero-top-developer" title="Developer: Muh Riswan">
+      <span class="dev-icon" style="font-size: 1.4rem;">🛡️</span>
+      <div>
+        <span class="dev-tag">DEVELOPER WEBSITE</span>
+        <strong>Muh Riswan</strong>
+      </div>
+      <span class="dev-badge-role">XI TKJ</span>
+    </div>
+
+    <div class="container">
+      <div class="hero-badge scroll-reveal">
+        <span>⚡ TEKNIK KOMPUTER DAN JARINGAN • ANGKATAN 2026</span>
+      </div>
+
+      <h1 class="scroll-reveal reveal-delay-1">
+        Official Website Kelas <br>
+        <span class="gradient-text">XI TKJ SMKN 2 TAKALAR</span>
+      </h1>
+
+      <p class="scroll-reveal reveal-delay-2">
+        "We don't just connect cables, we connect dreams and build the digital future!" <br>
+        Wadah kebersamaan, informasi jadwal roster A & B, struktur organisasi, dan galeri kenangan kelas kita.
+      </p>
+
+      <div class="hero-actions scroll-reveal reveal-delay-3">
+        <a href="#jadwal" class="btn btn-primary">📅 Cek Roster A & B</a>
+        <a href="#galeri" class="btn btn-outline">📸 Galeri Foto</a>
+      </div>
+
+      <!-- Quick Stats -->
+      <div class="stats-banner scroll-reveal reveal-delay-4">
+        <div class="stat-item">
+          <h3>22</h3>
+          <p>Total Siswa & Siswi</p>
+        </div>
+        <div class="stat-item">
+          <h3>Roster A & B</h3>
+          <p>Sesi Pembelajaran</p>
+        </div>
+        <div class="stat-item">
+          <h3>6</h3>
+          <p>Seksi Kepengurusan</p>
+        </div>
+        <div class="stat-item">
+          <h3>Lab TKJ</h3>
+          <p>Markas Praktikum</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= STRUKTUR ORGANISASI ================= -->
+  <section class="section" id="struktur">
+    <div class="container">
+      <div class="section-header scroll-reveal">
+        <span class="section-tag">ORGANIZATION HIERARCHY</span>
+        <h2 class="section-title">Struktur Organisasi Kelas</h2>
+        <p class="section-desc">Para pengurus kelas XI TKJ yang bertugas memimpin, mengayomi, dan mengkoordinir kelancaran seluruh kegiatan belajar mengajar.</p>
+      </div>
+
+      <div class="org-tree">
+        <!-- 1. Wali Kelas -->
+        <div id="waliKelasContainer"></div>
+
+        <!-- 2. Pengurus Inti (Ketua, Wakil, Bendahara 1 & 2, Sekretaris 1 & 2) -->
+        <div class="org-level" id="pengurusIntiContainer"></div>
+
+        <!-- 3. Seksi-Seksi Bidang -->
+        <div style="width: 100%; margin-top: 20px;">
+          <h3 style="text-align: center; color: var(--primary); font-family: 'JetBrains Mono', monospace; font-size: 1rem; margin-bottom: 24px; letter-spacing: 1px;" class="scroll-reveal">
+            -- KOORDINATOR SEKSI-SEKSI BIDANG --
+          </h3>
+          <div class="seksi-grid" id="seksiContainer"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= DAFTAR SISWA ================= -->
+  <section class="section" id="siswa" style="background: rgba(255, 255, 255, 0.01);">
+    <div class="container">
+      <div class="section-header scroll-reveal">
+        <span class="section-tag">CLASS ROSTER</span>
+        <h2 class="section-title">Keluarga Besar XI TKJ</h2>
+        <p class="section-desc">Mengenal lebih dekat seluruh anggota dan teknisi masa depan dari kelas XI TKJ SMKN 2 Takalar.</p>
+      </div>
+
+      <!-- Filter & Search Controls -->
+      <div class="filter-controls scroll-reveal">
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="searchSiswa" placeholder="Cari nama atau jabatan siswa..." oninput="renderSiswa()">
+        </div>
+        <div class="filter-btn-group">
+          <button class="filter-btn active" onclick="filterSiswa('all', this)">Semua (22)</button>
+          <button class="filter-btn" onclick="filterSiswa('L', this)">👨 Laki-laki</button>
+          <button class="filter-btn" onclick="filterSiswa('P', this)">👩 Perempuan</button>
+        </div>
+      </div>
+
+      <!-- Siswa Grid -->
+      <div class="siswa-grid" id="siswaGrid"></div>
+    </div>
+  </section>
+
+  <!-- ================= JADWAL & PIKET ================= -->
+  <section class="section" id="jadwal">
+    <div class="container">
+      <div class="section-header scroll-reveal">
+        <span class="section-tag">SCHEDULE & CLEANING DUTY</span>
+        <h2 class="section-title">Jadwal Pelajaran & Piket</h2>
+        <p class="section-desc">Pilih antara <strong>Roster Pelajaran A</strong> atau <strong>Roster Pelajaran B</strong>, serta cek pembagian piket kebersihan 5R.</p>
+      </div>
+
+      <!-- SELECTOR ROSTER A & ROSTER B -->
+      <div class="roster-selector-wrapper scroll-reveal">
+        <span class="roster-label">PILIH SESI ROSTER PELAJARAN:</span>
+        <div class="roster-tabs">
+          <button class="roster-btn active" id="btnRosterA" onclick="switchRoster('A')">
+            <span class="roster-icon">🅰️</span>
+            <div>
+              <span class="roster-title">Roster Pelajaran A</span>
+              <span class="roster-sub">Sesi Utama / Minggu Ganjil</span>
+            </div>
+          </button>
+          <button class="roster-btn" id="btnRosterB" onclick="switchRoster('B')">
+            <span class="roster-icon">🅱️</span>
+            <div>
+              <span class="roster-title">Roster Pelajaran B</span>
+              <span class="roster-sub">Sesi Praktikum / Minggu Genap</span>
+            </div>
+          </button>
+        </div>
+      </div>
+
+      <!-- Day Tabs -->
+      <div class="schedule-tabs scroll-reveal">
+        <button class="day-tab active" onclick="switchJadwalDay('senin', this)">Senin</button>
+        <button class="day-tab" onclick="switchJadwalDay('selasa', this)">Selasa</button>
+        <button class="day-tab" onclick="switchJadwalDay('rabu', this)">Rabu</button>
+        <button class="day-tab" onclick="switchJadwalDay('kamis', this)">Kamis</button>
+        <button class="day-tab" onclick="switchJadwalDay('jumat', this)">Jum'at</button>
+      </div>
+
+      <!-- Container Schedule -->
+      <div class="schedule-container scroll-reveal">
+        <!-- Mata Pelajaran -->
+        <div class="schedule-card">
+          <div class="card-title-box">
+            <span style="font-size: 1.5rem;">📚</span>
+            <div>
+              <h3>Jadwal Mata Pelajaran</h3>
+              <span id="rosterActiveTitle" style="font-size: 0.78rem; color: var(--primary); font-family: 'JetBrains Mono', monospace;">Roster Pelajaran A (Sesi Utama)</span>
+            </div>
+          </div>
+          <div class="timeline" id="pelajaranTimeline"></div>
+        </div>
+
+        <!-- Piket Kebersihan -->
+        <div class="schedule-card">
+          <div class="card-title-box">
+            <span style="font-size: 1.5rem;">🧹</span>
+            <h3>Petugas Piket 5R</h3>
+          </div>
+          <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 16px;">
+            Wajib datang 15 menit sebelum bel berbunyi dan membersihkan kelas sebelum pulang.
+          </p>
+          <div class="piket-list" id="piketList"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= GALERI FOTO KELAS ================= -->
+  <section class="section" id="galeri" style="background: rgba(255, 255, 255, 0.01);">
+    <div class="container">
+      <div class="section-header scroll-reveal">
+        <span class="section-tag">MEMORIES & ACTIVITIES</span>
+        <h2 class="section-title">Galeri Foto & Kenangan</h2>
+        <p class="section-desc">Dokumentasi momen berharga, praktikum di Lab Komputer, serta berbagai kegiatan seru kelas XI TKJ.</p>
+      </div>
+
+      <div class="gallery-toolbar scroll-reveal">
+        <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
+          <span style="color: var(--text-muted); font-size: 0.9rem;">Klik foto untuk melihat ukuran penuh / fullscreen</span>
+          <div id="adminStatusIndicator" class="admin-status-indicator" style="display: none;"></div>
+        </div>
+        <button class="btn btn-primary" id="btnUploadFoto" style="display: none;" onclick="openUploadModal()">
+          📸 Tambah / Upload Foto
+        </button>
+      </div>
+
+      <!-- Gallery Grid -->
+      <div class="gallery-grid" id="galleryGrid"></div>
+    </div>
+  </section>
+
+  <!-- ================= PESAN & KESAN (GUESTBOOK) ================= -->
+  <section class="section" id="pesan">
+    <div class="container">
+      <div class="section-header scroll-reveal">
+        <span class="section-tag">CLASS GUESTBOOK</span>
+        <h2 class="section-title">Pesan & Kesan</h2>
+        <p class="section-desc">Tuliskan pesan motivasi, candaan, atau kesan untuk kelas XI TKJ SMKN 2 Takalar!</p>
+      </div>
+
+      <div class="guestbook-wrapper scroll-reveal">
+        <!-- Form -->
+        <div class="guestbook-form">
+          <h3 style="color: #fff; font-size: 1.2rem; font-weight: 700; margin-bottom: 20px;">✍️ Tulis Pesan Kamu</h3>
+          <form id="cForm" onsubmit="handleCommentSubmit(event)">
+            <div class="form-group">
+              <label>Nama Kamu</label>
+              <input type="text" id="cNama" placeholder="Contoh: Muhammad Riswan / Guru Tamu" required>
+            </div>
+            <div class="form-group">
+              <label>Status / Role</label>
+              <select id="cRole">
+                <option value="Siswa XI TKJ">Siswa XI TKJ</option>
+                <option value="Wali Kelas / Guru">Wali Kelas / Guru</option>
+                <option value="Alumni / Tamu">Alumni / Tamu</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Pesan & Kesan</label>
+              <textarea id="cPesan" rows="4" placeholder="Tuliskan ucapan atau kenangan di sini..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%;">🚀 Kirim Pesan</button>
+          </form>
+        </div>
+
+        <!-- Feed List -->
+        <div>
+          <h3 style="color: #fff; font-size: 1.2rem; font-weight: 700; margin-bottom: 20px;">💬 Pesan & Kesan Masuk</h3>
+          <div class="guestbook-feed" id="guestbookFeed"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-logo">🌐 XI TKJ - SMKN 2 TAKALAR</div>
+      <p class="footer-subtitle">Teknik Komputer dan Jaringan • Takalar, Sulawesi Selatan</p>
+      
+      <div class="footer-socials">
+        <a href="#" class="social-link" title="Instagram">📸</a>
+        <a href="#" class="social-link" title="YouTube">🎥</a>
+        <a href="#" class="social-link" title="TikTok">🎵</a>
+        <a href="#" class="social-link" title="GitHub">💻</a>
+      </div>
+
+      <div class="footer-copy">
+        <p>&copy; 2026 Kelas XI TKJ SMKN 2 Takalar. Created & Developed by <strong>Muh Riswan</strong>.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= MODAL: DETAIL SISWA ================= -->
+  <div class="modal-overlay" id="modalSiswaDetail">
+    <div class="modal-box">
+      <button class="modal-close" onclick="document.getElementById('modalSiswaDetail').classList.remove('show')">&times;</button>
+      <div style="text-align: center;">
+        <img id="modalSiswaAvatar" src="" alt="Avatar" style="width: 110px; height: 110px; border-radius: 50%; border: 3px solid var(--primary); margin-bottom: 16px; background:#1e293b;">
+        <div id="modalSiswaNo" style="font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--primary); font-weight: 700;"></div>
+        <h3 id="modalSiswaNama" style="color: #fff; font-size: 1.4rem; font-weight: 800; margin: 4px 0 6px;"></h3>
+        <span id="modalSiswaJabatan" style="background: rgba(0, 210, 255, 0.15); color: var(--primary); padding: 4px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 600;"></span>
+        
+        <div style="margin: 24px 0; padding: 16px; background: rgba(255, 255, 255, 0.03); border-radius: var(--radius-sm); border: 1px solid rgba(255, 255, 255, 0.05); text-align: left;">
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 6px;">Jenis Kelamin: <strong id="modalSiswaGender" style="color: #fff;"></strong></p>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 6px;">Jurusan: <strong style="color: #fff;">Teknik Komputer & Jaringan (TKJ)</strong></p>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">Sekolah: <strong style="color: #fff;">SMK Negeri 2 Takalar</strong></p>
+        </div>
+
+        <p id="modalSiswaQuote" style="color: #cbd5e1; font-style: italic; font-size: 0.95rem;"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MODAL: DEVELOPER / ADMIN AUTHENTICATION ================= -->
+  <div class="modal-overlay" id="modalDevAuth">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeDevAuthModal()">&times;</button>
+      <div style="text-align: center; margin-bottom: 20px;">
+        <div style="width: 60px; height: 60px; background: rgba(0, 210, 255, 0.1); border: 2px solid var(--primary); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 1.8rem; margin-bottom: 12px;">🛡️</div>
+        <h3 style="color: #fff; font-size: 1.3rem; font-weight: 800;">Verifikasi Developer</h3>
+        <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 4px;">
+          Website ini dikelola langsung oleh <strong>Muh Riswan</strong>.
+        </p>
+      </div>
+
+      <form onsubmit="handleDevAuthSubmit(event)">
+        <div class="form-group">
+          <label>Masukkan Sandi Akses</label>
+          <input type="password" id="devPinInput" placeholder="Masukkan sandi..." required autocomplete="off">
+        </div>
+
+        <div style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px;">
+          <button type="button" class="btn btn-outline" onclick="closeDevAuthModal()">Batal</button>
+          <button type="submit" class="btn btn-primary">🔓 Masuk</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= MODAL: UPLOAD FOTO (HANYA ADMIN/DEVELOPER) ================= -->
+  <div class="modal-overlay" id="uploadModal">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeUploadModal()">&times;</button>
+      <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+        <span style="font-size: 1.5rem;">📸</span>
+        <div>
+          <h3 style="color: #fff; font-size: 1.25rem; font-weight: 700;">Unggah Foto Dokumentasi Kelas</h3>
+          <span style="color: #00ff88; font-size: 0.72rem; font-family: 'JetBrains Mono', monospace;">● Hak Akses: Developer Muh Riswan</span>
+        </div>
+      </div>
+      <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 20px;">Foto akan langsung tampil dan tersimpan permanen di galeri website kelas.</p>
+      
+      <form id="formUploadFoto" onsubmit="handleUploadFoto(event)">
+        <div class="form-group">
+          <label>Pilih File Foto (JPG/PNG)</label>
+          <input type="file" id="fotoFile" accept="image/*" required style="cursor: pointer;">
+        </div>
+        <div class="form-group">
+          <label>Judul / Keterangan Foto</label>
+          <input type="text" id="fotoJudul" placeholder="Contoh: Praktik Crimping LAN Lab 2" required>
+        </div>
+        <div class="form-group">
+          <label>Kategori Kegiatan</label>
+          <select id="fotoKategori">
+            <option value="Praktikum Lab">Praktikum Lab TKJ</option>
+            <option value="Kebersamaan">Kebersamaan / Kelas</option>
+            <option value="Event & Lomba">Event & Lomba</option>
+            <option value="Sekolah">Kegiatan Sekolah</option>
+          </select>
+        </div>
+        <div style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 24px;">
+          <button type="button" class="btn btn-outline" onclick="closeUploadModal()">Batal</button>
+          <button type="submit" class="btn btn-primary">Simpan Foto</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= MODAL: LIGHTBOX FOTO PREVIEW ================= -->
+  <div class="modal-overlay" id="lightboxModal" onclick="closeLightbox()">
+    <div class="lightbox-content" onclick="event.stopPropagation()">
+      <img id="lightboxImg" class="lightbox-img" src="" alt="Preview">
+      <div id="lightboxCaption" class="lightbox-caption"></div>
+      <div style="margin-top: 14px;">
+        <button class="btn btn-outline" onclick="closeLightbox()">Tutup Preview</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRIPT -->
+  <script src="js/app.js"></script>
+</body>
+</html>
